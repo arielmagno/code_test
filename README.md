@@ -4,7 +4,7 @@
 
 1. Clone the repository.
 2. Install all dependencies by running `npm install`
-3. Run `npx wdio run ./wdio.conf.ts` to execute e2e tests and visual regression test
+3. Run `npm run wdio` to execute e2e tests and visual regression test
 
 ```
 
