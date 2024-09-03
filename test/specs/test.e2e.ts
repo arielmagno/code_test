@@ -1,5 +1,5 @@
 import { expect } from "chai"; // Import the assertion library
-const { check, checkFullPageScreen } = require("wdio-image-comparison-service");
+const { checkFullPageScreen } = require("wdio-image-comparison-service");
 
 // Take a screenshot
 describe("Visual Regression Tests", () => {
@@ -10,7 +10,6 @@ describe("Visual Regression Tests", () => {
     // Save baseline screenshot
     await browser.saveScreenshot("./baseline/safety-highlights-page.png");
 
-    // Take a screenshot
     const screenshot = await browser.takeScreenshot();
     // Save the screenshot to a file
     require("fs").writeFileSync(
@@ -67,10 +66,16 @@ describe("Volvo Cars Safety Highlights - Visual Regression Test", () => {
     await browser.url("https://www.volvocars.com/intl/v/safety/highlights");
 
     // Take a screenshot of the full page and compare with the baseline
-    const comparisonResult = await checkFullPageScreen("Safety-Highlights-Page", {
-      /* options if needed */
-      ignoreElements: ["#header", "#footer"],
-    });
+    const comparisonResult = await browser.compareImages(
+      "fullpage",
+      await browser.takeScreenshot(),
+      "./baseline/safety-highlights-page.png",
+      {
+        ignoreAntialiasing: true,
+        ignoreColors: true,
+        misMatchThreshold: 0.1,
+      }
+    );
 
     // Assert that the comparison result matches the baseline
     expect(comparisonResult.misMatchPercentage).lessThan(1); // Adjust the threshold as needed
