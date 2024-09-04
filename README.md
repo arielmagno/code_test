@@ -14,11 +14,6 @@
 - **Reporting**: Generates detailed test reports in json format.
 - **Visual Regression Testing: Compares the visual changes from the baseline screenshot to identify changes
 
-## Bonus Points
-
-- **Kubernetes Support**: Allows distributed testing.
-- **Visual Regression**: Compare visual changes over time.
-
 ## Test Coverage
 
 - This suite tests the page [Safety Highlights](https://www.volvocars.com/intl/v/safety/highlights).
